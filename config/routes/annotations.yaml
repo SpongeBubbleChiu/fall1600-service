@@ -1,0 +1,9 @@
+controllers:
+    resource: ../../src/Controller/AdminApi/
+    type: annotation
+    prefix: /admin/api
+
+api:
+    resource: ../../src/Controller/Api/
+    type: annotation
+    prefix: /api

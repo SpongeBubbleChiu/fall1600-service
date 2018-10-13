@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Story index{% endblock %}
+
+{% block body %}
+    <h1>Story index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Real_title</th>
+                <th>Frontend</th>
+                <th>Backend</th>
+                <th>Start_at</th>
+                <th>Outside_link</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for story in stories %}
+            <tr>
+                <td>{{ story.id }}</td>
+                <td>{{ story.title }}</td>
+                <td>{{ story.realTitle }}</td>
+                <td>{{ story.frontend }}</td>
+                <td>{{ story.backend }}</td>
+                <td>{{ story.startAt ? story.startAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ story.outsideLink }}</td>
+                <td>{{ story.content }}</td>
+                <td>
+                    <a href="{{ path('story_show', {'id': story.id}) }}">show</a>
+                    <a href="{{ path('story_edit', {'id': story.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('story_new') }}">Create new</a>
+{% endblock %}

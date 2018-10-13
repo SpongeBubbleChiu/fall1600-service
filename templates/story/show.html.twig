@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Story{% endblock %}
+
+{% block body %}
+    <h1>Story</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ story.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ story.title }}</td>
+            </tr>
+            <tr>
+                <th>Real_title</th>
+                <td>{{ story.realTitle }}</td>
+            </tr>
+            <tr>
+                <th>Frontend</th>
+                <td>{{ story.frontend }}</td>
+            </tr>
+            <tr>
+                <th>Backend</th>
+                <td>{{ story.backend }}</td>
+            </tr>
+            <tr>
+                <th>Start_at</th>
+                <td>{{ story.startAt ? story.startAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Outside_link</th>
+                <td>{{ story.outsideLink }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ story.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('story_index') }}">back to list</a>
+
+    <a href="{{ path('story_edit', {'id': story.id}) }}">edit</a>
+
+    {{ include('story/_delete_form.html.twig') }}
+{% endblock %}
