@@ -30,4 +30,12 @@ class StoryController extends Controller
     {
         return $this->createJsonSerializeResponse($story, array("detail"));
     }
+
+    /**
+     * @Route("/{id}", methods={"POST", "PUT"})
+     */
+    public function edit(Story $story)
+    {
+        return $this->createJsonSerializeResponse($story, array("detail"));
+    }
 }
