@@ -31,6 +31,7 @@ services:
         resource: '../src/EventListener'
         tags:
          - { name: kernel.event_listener, event: kernel.request, priority: 48 }
+         - { name: kernel.event_listener, event: kernel.response, priority: 0 }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

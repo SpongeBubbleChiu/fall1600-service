@@ -21,17 +21,14 @@ class ApiCorsResponseListener
     }
 
     /**
-     * @DI\Observe("kernel.request", priority=48)
+     * @DI\Observe("kernel.request")
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        var_dump("onKernelRequest");
         if(!$event->isMasterRequest()) {
-            var_dump("aaa");
             return;
         }
 
-        var_dump("bbb");
         $request = $event->getRequest();
         if (($origin = $request->headers->get('origin')) === null ||
             ($request->isMethod(Request::METHOD_POST) && $request->headers->get('Content-Type') == 'application/x-www-form-urlencoded')
@@ -39,24 +36,18 @@ class ApiCorsResponseListener
             return;
         }
 
-        var_dump("ccc");
-
         if ($this->isSameOrigin($request)) {
             $this->setCors($request, $origin);
             return;
         }
-
-        var_dump("ddd");
 
         if (!$this->isValidOrigin($origin)) {
             $event->setResponse(new Response('CORS Access Deny', Response::HTTP_FORBIDDEN));
             return;
         }
 
-        var_dump("eee");
         $this->setCors($request, $origin);
         if ($request->isMethod('OPTIONS')) {
-            var_dump("fff");
             $response = new Response();
             $this->setResponseCORS($response, $request->attributes->get('_cors'));
             $event->setResponse($response);
@@ -83,7 +74,7 @@ class ApiCorsResponseListener
     /**
      * @DI\Observe("kernel.response")
      */
-    public function onResponse(FilterResponseEvent $event)
+    public function onKernelResponse(FilterResponseEvent $event)
     {
         if (!$event->isMasterRequest()) {
             return;
