@@ -16,6 +16,16 @@ class ServerSideRender
 
     protected $puppeteerApi;
 
+    public function injectAllowOrigins($allowOrigins)
+    {
+        $this->allowOrigins = $allowOrigins;
+    }
+
+    public function injectPuppeteerApi($puppeteerApi)
+    {
+        $this->puppeteerApi = $puppeteerApi;
+    }
+
     public function render($url, $engine = self::ENGINE_PUPPETEER)
     {
         if (is_null($url)) {

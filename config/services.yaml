@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    allow_origins: ['http://localhost:8080', 'http://127.0.0.1:8080']
+    puppeteer_api: 'http://localhost:9999/render'
 
 services:
     # default configuration for services in *this* file
@@ -33,11 +35,18 @@ services:
          - { name: kernel.event_listener, event: kernel.request, priority: 48 }
          - { name: kernel.event_listener, event: kernel.response, priority: 0 }
 
-    App\Service\:
-        resource: '../src/Service/ServerSideRender.php'
-        arguments:
-            $allowOrigins: '%env(resolve:ALLOW_ORIGINS)%'
-            $puppeteerApi: ''
+    server_side_render:
+        public: true
+        class: App\Service\ServerSideRender
+        calls:
+            -
+                method: injectAllowOrigins
+                arguments:
+                    - "%allow_origins%"
+            -
+                method: injectPuppeteerApi
+                arguments:
+                    - "%puppeteer_api%"
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
