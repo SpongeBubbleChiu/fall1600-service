@@ -10,8 +10,8 @@ class ServerSideRenderTest extends BaseKernelTestCase
     {
         //arrange
         $expected1 = array(
-          "http://localhost:8080",
-          "http://127.0.0.1:8080",
+          "localhost:8080",
+          "127.0.0.1:8080",
         );
         $expected2 = "http://localhost:9999/render";
         $service = $this->container->get("server_side_render");
