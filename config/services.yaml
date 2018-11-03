@@ -61,5 +61,13 @@ services:
             $storePath: "%file.store.path%"
             $pathLevel: "%file.store.path_level%"
 
+    file_store.local.timer:
+        public: true
+        class: App\FileStore\FileStoreLocalTimer
+        arguments:
+            $storePath: "%file.store.path%"
+            $pathLevel: "%file.store.path_level%"
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
