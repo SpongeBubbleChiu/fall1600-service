@@ -3,7 +3,6 @@
 namespace App\FileStore;
 
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @Service("file_store.local.random")
