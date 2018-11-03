@@ -5,8 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    allow_origins: ['http://localhost:8080', 'http://127.0.0.1:8080']
+    allow_origins: ['localhost:8080', '127.0.0.1:8080']
     puppeteer_api: 'http://localhost:9999/render'
+    ssr_engine: 'puppeteer'
 
 services:
     # default configuration for services in *this* file

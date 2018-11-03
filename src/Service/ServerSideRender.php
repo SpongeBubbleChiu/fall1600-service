@@ -63,7 +63,7 @@ class ServerSideRender
             ),
         ));
 
-        if($response->getStatusCode() != Response::HTTP_OK){
+        if ($response->getStatusCode() != Response::HTTP_OK) {
             return array(
                 'status' => false,
                 'content' => $response->getBody(),
