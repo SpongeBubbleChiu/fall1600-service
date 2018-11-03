@@ -15,13 +15,7 @@ class FileStoreLocalRandom implements FileStoreInterface
     protected $storePath;
     /** @var Filesystem  */
     protected $filesystem;
-    
-    /**
-     * @InjectParams({
-     *    "storePath" = @Inject("%file.store.path%"),
-     *    "pathLevel" = @Inject("%file.store.path_level%")
-     * })
-     */
+
     public function __construct($storePath, $pathLevel, Filesystem $filesystem)
     {
         $this->uidGenerator = new Uid\RandomUidGenerator(static::class);

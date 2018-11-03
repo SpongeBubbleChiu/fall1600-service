@@ -9,6 +9,11 @@ parameters:
     puppeteer_api: 'http://localhost:9999/render'
     ssr_engine: 'puppeteer'
 
+    web.upload.prefix: 'upload'
+    file.store.path: '%kernel.root_dir%/../web/upload'
+    file.store.path_level: 3
+    file.store.service: 'file_store.local.random'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -48,6 +53,13 @@ services:
                 method: injectPuppeteerApi
                 arguments:
                     - "%puppeteer_api%"
+
+    file_store.local.random:
+        public: true
+        class: App\FileStore\FileStoreLocalRandom
+        arguments:
+            $storePath: "%file.store.path%"
+            $pathLevel: "%file.store.path_level%"
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
