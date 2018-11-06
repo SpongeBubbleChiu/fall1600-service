@@ -68,6 +68,10 @@ services:
             $storePath: "%file.store.path%"
             $pathLevel: "%file.store.path_level%"
 
+    file_store.s3:
+        public: true
+        class: App\FileStore\FileStoreS3
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
