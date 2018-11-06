@@ -14,6 +14,8 @@ parameters:
     file.store.path_level: 3
     file.store.service: 'file_store.local.random'
 
+    secret: "12345566"
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -71,6 +73,16 @@ services:
     file_store.s3:
         public: true
         class: App\FileStore\FileStoreS3
+
+    secret_jwt_token:
+        public: true
+        class: App\Token\SecretJwtToken
+        calls:
+            -
+                method: injectSecret
+                arguments:
+                    - "%secret%"
+
 
 
     # add more service definitions when explicit configuration is needed
