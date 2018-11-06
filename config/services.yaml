@@ -15,6 +15,7 @@ parameters:
     file.store.service: 'file_store.local.random'
 
     secret: "12345566"
+    token_issuer: "http://localhost:8000"
 
 services:
     # default configuration for services in *this* file
@@ -78,6 +79,19 @@ services:
         public: true
         class: App\Token\SecretJwtToken
         calls:
+            -
+                method: injectSecret
+                arguments:
+                    - "%secret%"
+
+    token_service.sha:
+        public: true
+        class: App\Token\Service\ShaTokenService
+        calls:
+            -
+                method: injectIssuer
+                arguments:
+                    - "%token_issuer%"
             -
                 method: injectSecret
                 arguments:

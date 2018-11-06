@@ -6,29 +6,16 @@ use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\ValidationData;
 
-/**
- * @DI\Service("token_service.sha")
- */
 class ShaTokenService extends AbstractTokenService
 {
     protected $secret;
     protected $issuer;
 
-    /**
-     * @DI\InjectParams({
-     *   "issuer" = @DI\Inject("%token_issuer%")
-     * })
-     */
-    public function injectIssuer($issuer)
+    public function injectIssuer($tokenIssuer)
     {
-        $this->issuer = $issuer;
+        $this->issuer = $tokenIssuer;
     }
 
-    /**
-     * @DI\InjectParams({
-     *   "secret" = @DI\Inject("%secret%")
-     * })
-     */
     public function injectSecret($secret)
     {
         $this->secret = $secret;
